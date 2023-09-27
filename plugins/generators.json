@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "create-content": {
+      "factory": "./src/generators/create-content/generator",
+      "schema": "./src/generators/create-content/schema.json",
+      "description": "create-content generator"
+    }
+  }
+}

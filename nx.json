@@ -1,15 +1,35 @@
 {
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-        "cacheableOperations": [
-          "build"
-        ]
-      }
-    }
-  },
   "affected": {
     "defaultBase": "main"
+  },
+  "targetDefaults": {
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore",
+        "{workspaceRoot}/eslint.config.js"
+      ]
+    },
+    "build": {
+      "cache": true
+    },
+    "@nx/jest:jest": {
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/jest.preset.js"
+      ],
+      "cache": true,
+      "options": {
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
   }
 }

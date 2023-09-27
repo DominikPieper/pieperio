@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "CreateContent",
+  "title": "",
+  "type": "object",
+  "properties": {
+  },
+  "required": []
+}

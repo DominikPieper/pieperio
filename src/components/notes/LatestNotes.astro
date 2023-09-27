@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import Note from "./Note.astro";
+import config from "../../config.mjs";
+
+const { postLimit = config.latestPosts, skipPost = "" } = Astro.props;
+
+const posts = (await getCollection('notes', ({ data }) => {
+    return !(data.title == skipPost) ;
+  })).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  ).slice(0, postLimit);
+---
+<section class="container mx-auto max-w-screen-lg px-7 py-10 mb-10">
+    {
+        posts.map((note, index) => {
+          return <Note noteData={note} num={index} />;
+        })
+    }
+</section>

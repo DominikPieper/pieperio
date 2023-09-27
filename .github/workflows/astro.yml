@@ -8,6 +8,8 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
+  schedule:
+    - cron: '*/30 6-11 * * *'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -70,6 +72,9 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
+      - name: Copy files from Vault
+        run: |
+          ${{ steps.detect-package-manager.outputs.runner }} nx g create-content
       - name: Build with Astro
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \

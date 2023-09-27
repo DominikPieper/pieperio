@@ -1,20 +1,29 @@
 import { defineCollection, reference, z } from 'astro:content';
 
 const blogCollection = defineCollection({
-    type: 'content', // v2.5.0 and later
-    schema: ({image}) => z.object({
+    type: 'content',
+    schema: ({ image }) => z.object({
         title: z.string(),
         intro: z.string(),
-        tag: z.string(),
+        tags: z.array(z.string()),
         image: image().optional(),
         author: reference('author'),
         pubDate: z.date()
     }),
 });
 
+const notesCollection = defineCollection({
+    type: 'content',
+    schema: ({ image }) => z.object({
+        title: z.string(),
+        tags: z.array(z.string()),
+        pubDate: z.date()
+    }),
+});
+
 const pageCollection = defineCollection({
-    type: 'content', // v2.5.0 and later
-    schema: ({image}) => z.object({
+    type: 'content',
+    schema: ({ image }) => z.object({
         title: z.string(),
         intro: z.string(),
         image: image().optional()
@@ -22,8 +31,8 @@ const pageCollection = defineCollection({
 });
 
 const authorCollection = defineCollection({
-    type: 'data', // v2.5.0 and later
-    schema: ({image}) => z.object({
+    type: 'data',
+    schema: ({ image }) => z.object({
         displayName: z.string(),
         bio: z.string().optional(),
         photo: image().optional()
@@ -32,6 +41,7 @@ const authorCollection = defineCollection({
 
 export const collections = {
     'blog': blogCollection,
+    'notes': notesCollection,
     'author': authorCollection,
     'page': pageCollection,
 };

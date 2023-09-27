@@ -2,9 +2,10 @@
 dist/
 # generated types
 .astro/
-
+vault/
 # dependencies
 node_modules/
+public/
 
 # logs
 npm-debug.log*
@@ -12,6 +13,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+## copy dirs
+src/content/blog/**
+src/content/notes/**
 
 # environment variables
 .env
@@ -19,3 +23,5 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+.nx/cache
