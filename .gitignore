@@ -25,3 +25,5 @@ src/content/notes/**
 .DS_Store
 
 .nx/cache
+# Local Netlify folder
+.netlify

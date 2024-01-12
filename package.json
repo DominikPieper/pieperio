@@ -8,7 +8,8 @@
     "build": "nx exec -- astro build",
     "copy-files-from-vault": "nx g create-content",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "netlify deploy --prod"
   },
   "dependencies": {
     "@astrojs/mdx": "^1.1.5",
