@@ -11,17 +11,19 @@ const { postData } = Astro.props;
 <html lang="en">
   <head>
     <script is:inline>
-      if (
-        localStorage.darkMode === "true" ||
-        (!("darkMode" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-        localStorage.darkMode = "true";
-      } else {
-        document.documentElement.classList.remove("dark");
-        localStorage.darkMode = "false";
+      const setDarkMode = () => {
+          if (localStorage.darkMode === 'true' || (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+              document.documentElement.classList.add('dark')
+              localStorage.darkMode = 'true';
+          } else {
+              document.documentElement.classList.remove('dark')
+              localStorage.darkMode = 'false';
+          }
       }
+
+      setDarkMode();
+      // Runs on view transitions navigation
+      document.addEventListener('astro:after-swap', setDarkMode);
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
